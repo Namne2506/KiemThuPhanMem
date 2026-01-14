@@ -99,12 +99,11 @@ npm install
 Đăng nhập thành công với tài khoản hợp lệ
 Hiển thị thông báo lỗi khi nhập sai thông tin
 Kiểm tra trạng thái tài khoản bị khóa
+![Màn hình đăng nhập thành công/ thất bại](assets/image-2.png)
 
 **b. Kiểm thử giỏ hàng và thanh toán**
 Thêm và xóa sản phẩm khỏi giỏ hàng
 Sắp xếp danh sách sản phẩm theo nhiều tiêu chí
 Thực hiện đầy đủ quy trình thanh toán
 Kiểm tra tính hợp lệ của thông tin người dùng nhập vào
-
-![Màn hình đăng nhập thành công/ thất bại](assets/image-2.png)
 ![Kết quả các chức năng còn lại](assets/image-3.png)
