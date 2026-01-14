@@ -3,7 +3,7 @@
 ## Các bước tạo Issues:
 
 ### 1. Truy cập trang Issues
-- Vào repo: https://github.com/NarukamiYaeAsuna/baitapkiemthuphanmem
+- Vào repo: https://github.com/Namne2506/KiemThuPhanMem.git
 - Click tab **"Issues"** ở menu trên cùng
 - Click nút **"New issue"** (màu xanh lá)
 
