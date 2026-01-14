@@ -106,3 +106,5 @@ Sắp xếp danh sách sản phẩm theo nhiều tiêu chí
 Thực hiện đầy đủ quy trình thanh toán
 Kiểm tra tính hợp lệ của thông tin người dùng nhập vào
 
+![alt text](image-2.png)
+![alt text](image-3.png)
