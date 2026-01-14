@@ -1,38 +1,147 @@
-KiemThuPhanMem
+# KIỂM THỬ PHẦN MỀM
 
-**CHƯƠNG 1: Bài tập kiểm thử giao diện phần mềm trên trang web Can't Unsee**
+**Họ và tên:** Nguyễn ĐỨc Nam
+**Mã sinh viên:** BCS230062
 
-<img width="1195" height="676" alt="image" src="https://github.com/user-attachments/assets/46713899-9dd0-402e-b879-3cc4aeaa61e8" />
+---
+
+## 📑 Mục lục
+
+1. [Chương 1: Thử thách thiết kế UI/UX (Can't Unsee)](#chương-1-thử-thách-thiết-kế-uiux-cant-unsee)
+2. [Chương 2: Kiểm thử đơn vị với JUnit (Student Analyzer)](#chương-2-kiểm-thử-đơn-vị-với-junit-student-analyzer)
+3. [Chương 3: Kiểm thử tự động End-to-End với Cypress](#chương-3-kiểm-thử-tự-động-end-to-end-với-cypress)
 
 
-**CHƯƠNG 2: Bài tập thực hành kiểm thử với JUnit**
+---
 
-1. Mục tiêu
-Viết kiểm thử đơn vị bằng JUnit 5
-Áp dụng Maven trong quản lý project Java
-Thực hành quy trình làm việc với GitHub Issues và Commit
+## Chương 1: Thử thách thiết kế UI/UX (Can't Unsee)
 
-2. Mô tả bài toán
-Chương trình phân tích điểm số học sinh với các chức năng:
-Đếm số học sinh đạt loại Giỏi (điểm >= 8.0)
-Tính điểm trung bình của các điểm hợp lệ (từ 0 đến 10)
-Các điểm không hợp lệ (<0 hoặc >10) sẽ bị bỏ qua.
+### 1.1 Tổng quan
 
-3. Công nghệ sử dụng
-Java 21
-Maven
-JUnit 5
-Visual Code IDE
+Phần này ghi lại kết quả thực hành đánh giá giao diện người dùng thông qua trò chơi "Can't Unsee". Mục tiêu là rèn luyện mắt quan sát các lỗi thiết kế nhỏ và sự không nhất quán trong UI.
 
-4. Cấu trúc thư mục
-unit_test/
-├── src/
-│ └── main/java
-│     └── StudentAnalyzer.java
-│ └── test/java
-│     └── StudentAnalyzerTest.java
-├── pom.xml
-└── README.md
+### 1.2 Kết quả đạt được
 
-5. Cách chạy kiểm thử đơn 
-Vào đúng thư mục ...\KiemThuPhanMem\unit-test> trong terminal nhập: mvn test
+![Kết quả Can't Unsee](https://github.com/user-attachments/assets/46713899-9dd0-402e-b879-3cc4aeaa61e8
+)
+
+| Chỉ số | Chi tiết | Đánh giá |
+| :--- | :--- | :--- |
+| **Điểm số** | **7330** | Cao |
+| **Xếp hạng** | **GOLD** | Top 10% người chơi |
+| **Thời gian** | 00:05:00 | Tốc độ xử lý nhanh |
+
+**Nhận xét:** Kết quả mức GOLD chứng tỏ khả năng nhận diện các chi tiết thiết kế UI tinh tế là tốt.
+
+---
+
+## Chương 2: Kiểm thử đơn vị với JUnit (Student Analyzer)
+
+### 2.1 Giới thiệu bài toán
+
+Xây dựng và kiểm thử module `StudentAnalyzer` để xử lý dữ liệu điểm số học sinh. Hệ thống cần đảm bảo tính đúng đắn khi xử lý các dữ liệu đầu vào khác nhau, bao gồm cả dữ liệu lỗi.
+
+**Chức năng chính:**
+
+1. **`countExcellentStudents(List<Double> scores)`**: Đếm số lượng học sinh đạt loại Giỏi (điểm từ 8.0 trở lên).
+2. **`calculateValidAverage(List<Double> scores)`**: Tính điểm trung bình cộng, tự động loại bỏ các điểm số không hợp lệ (điểm âm hoặc > 10).
+
+### 2.2 Cấu trúc dự án
+
+```text
+Tester/
+├── unit-test/
+│   ├── src/
+│   │   └──  main/java
+                  └──StudentAnalyzer.java      # Mã nguồn logic xử lý
+│   └── test/java
+│       └── StudentAnalyzerTest.java  # Kịch bản kiểm thử (JUnit 5)
+```
+
+### 2.3 Chiến lược kiểm thử (Test Strategy)
+
+Các kịch bản kiểm thử (Test Cases) được thiết kế bao phủ các trường hợp:
+
+**A. Phương thức `countExcellentStudents`**
+
+* ✅ **Normal Case:** Danh sách chứa điểm giỏi, khá, trung bình.
+* ✅ **Boundary Case:** Điểm ngay tại ngưỡng 8.0, 7.9, 10.0, 0.0.
+* ✅ **Review Error/Invalid:** Điểm âm, điểm > 10, danh sách chứa `null`.
+* ✅ **Empty/Null:** Danh sách rỗng hoặc đối tượng list là null.
+
+**B. Phương thức `calculateValidAverage`**
+
+* ✅ **Calculation:** Tính toán chính xác trung bình cộng các số hợp lệ.
+* ✅ **Filter Logic:** Bỏ qua điểm sai, chỉ tính điểm đúng.
+* ✅ **Edge Case:** Danh sách chỉ toàn điểm sai (trả về 0.0).
+
+### 2.4 Hướng dẫn chạy kiểm thử
+
+**Yêu cầu:** JDK 8+ và thư viện JUnit 5.
+
+**Các bước thực hiện:**
+
+1. Mở dự án bằng IDE (IntelliJ IDEA, Eclipse, hoặc VS Code).
+2. Đảm bảo thư viện **JUnit 5.8.1** (hoặc mới hơn) đã được thêm vào classpath.
+3. Mở file `unit-test/test/StudentAnalyzerTest.java`.
+4. Nhấp chuột phải và chọn **Run 'StudentAnalyzerTest'**.
+5. Kiểm tra kết quả trên thanh trạng thái (Green Bar = All Passed).
+
+------
+
+## Chương 3: Kiểm thử tự động End-to-End với Cypress
+
+### 3.1 Giới thiệu
+
+Thực hành kiểm thử tự động End-to-End (E2E) cho trang web **SauceDemo** (<https://www.saucedemo.com>) sử dụng **Cypress**. Dự án bao gồm các kịch bản kiểm thử cho chức năng Đăng nhập, Giỏ hàng và Thanh toán.
+
+### 3.2 Cài đặt và Môi trường
+
+* **Thư mục dự án:** `cypress-exercise/`
+* **Công cụ:** Node.js, Cypress 15+
+
+**Cài đặt:**
+
+```bash
+cd cypress-exercise
+npm install
+```
+
+### 3.3 Danh sách kịch bản kiểm thử (Test Scenarios)
+
+Dự án bao gồm 3 tệp kiểm thử chính trong thư mục `cypress/e2e/`:
+
+1. **`login_spec.cy.js` (Chức năng Đăng nhập):**
+    * ✅ Kiểm tra hiển thị giao diện đăng nhập.
+    * ✅ Đăng nhập thành công với tài khoản chuẩn.
+    * ✅ Báo lỗi khi sai tên đăng nhập hoặc mật khẩu.
+    * ✅ Kiểm tra tài khoản bị khóa (`locked_out_user`).
+    * ✅ Kiểm tra chức năng Đăng xuất.
+
+2. **`cart_spec.cy.js` (Quản lý Giỏ hàng):**
+    * ✅ Sắp xếp sản phẩm theo Giá (Thấp -> Cao).
+    * ✅ Sắp xếp sản phẩm theo Tên (Z -> A).
+    * ✅ Thêm sản phẩm và kiểm tra trạng thái nút (Add -> Remove).
+    * ✅ Xóa sản phẩm từ trang danh sách (Inventory).
+    * ✅ Xóa sản phẩm từ trang Giỏ hàng (Cart).
+    * ✅ Quy trình thanh toán trọn vẹn (Thêm -> Giỏ hàng -> Checkout -> Finish).
+    * ✅ Kiểm tra tính toán tổng tiền (Subtotal).
+    * ✅ Kiểm tra xác thực form thông tin (Validate required fields).
+
+
+### 3.4 Hướng dẫn chạy
+
+Để chạy kiểm thử, mở terminal tại thư mục `cypress-exercise`:
+
+* **Chạy ngầm (Headless mode):**
+
+    ```bash
+    npx cypress run
+    ```
+
+* **Chạy giao diện (Interactive mode):**
+
+    ```bash
+    npx cypress open
+    ```
+
