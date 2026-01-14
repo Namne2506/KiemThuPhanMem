@@ -15,7 +15,7 @@
 
 ## 1. Đánh giá UI/UX với trò chơi Can't Unsee
 
-![alt text](image-1.png)
+![Cant unsee](assets/image-1.png)
 ### 1.1 Mục đích thực hành
 
 Giao diện người dùng (UI/UX) có ảnh hưởng trực tiếp đến trải nghiệm sử dụng phần mềm. Trong phần thực hành này, trò chơi *Can't Unsee* được sử dụng như một công cụ mô phỏng nhằm rèn luyện khả năng phát hiện các lỗi thiết kế giao diện nhỏ nhưng quan trọng, chẳng hạn như:
@@ -106,5 +106,5 @@ Sắp xếp danh sách sản phẩm theo nhiều tiêu chí
 Thực hiện đầy đủ quy trình thanh toán
 Kiểm tra tính hợp lệ của thông tin người dùng nhập vào
 
-![alt text](image-2.png)
-![alt text](image-3.png)
+![Màn hình đăng nhập thành công/ thất bại](assets/image-2.png)
+![Kết quả các chức năng còn lại](assets/image-3.png)
