@@ -89,16 +89,18 @@ Dự án được triển khai trong thư mục `cypress-exercise`, sử dụng 
 
 Cài đặt thư viện cần thiết:
 
-```bash
+
 npm install
 
-3.3 Nội dung kiểm thử
-a. Kiểm thử đăng nhập
+
+### 3.3 Nội dung kiểm thử
+
+**a. Kiểm thử đăng nhập**
 Đăng nhập thành công với tài khoản hợp lệ
 Hiển thị thông báo lỗi khi nhập sai thông tin
 Kiểm tra trạng thái tài khoản bị khóa
 
-b. Kiểm thử giỏ hàng và thanh toán
+**b. Kiểm thử giỏ hàng và thanh toán**
 Thêm và xóa sản phẩm khỏi giỏ hàng
 Sắp xếp danh sách sản phẩm theo nhiều tiêu chí
 Thực hiện đầy đủ quy trình thanh toán
