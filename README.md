@@ -1,9 +1,9 @@
-Software-testing-class
-CHƯƠNG 1: Bài tập kiểm thử giao diện phần mềm trên trang web Can't Unsee
+<img width="1195" height="676" alt="image" src="https://github.com/user-attachments/assets/4f4d13ca-53c6-478a-89e5-ea47e5ffbc8f" />KiemThuPhanMem
+**CHƯƠNG 1: Bài tập kiểm thử giao diện phần mềm trên trang web Can't Unsee**
 <img width="1195" height="676" alt="image" src="https://github.com/user-attachments/assets/46713899-9dd0-402e-b879-3cc4aeaa61e8" />
 
 
-CHƯƠNG 2: Bài tập thực hành kiểm thử với JUnit
+**CHƯƠNG 2: Bài tập thực hành kiểm thử với JUnit**
 1. Mục tiêu
 Viết kiểm thử đơn vị bằng JUnit 5
 Áp dụng Maven trong quản lý project Java
