@@ -1,46 +1,51 @@
 # BÁO CÁO LỖI (BUG REPORTS)
-**Tổng số Bug:** 10 (2 Critical, 4 Major, 4 Minor)
+**Tổng số Bug:** 10 (1 Critical, 5 Major, 4 Minor)
 
 ## Danh sách lỗi chi tiết
 
 | Bug ID | Tóm tắt (Summary) | Severity | Priority | Trạng thái |
 | :--- | :--- | :--- | :--- | :--- |
-| **BUG_CART_001** | Tổng tiền giỏ hàng tính sai khi mua > 10 sản phẩm | **Critical** | High | Open |
-| **BUG_CHECKOUT_002** | Hệ thống crash (màn hình trắng) khi chọn thanh toán Visa | **Critical** | High | Open |
-| **BUG_AUTH_003** | Không nhận được email reset mật khẩu | Major | High | Open |
-| **BUG_PROD_004** | Bộ lọc giá không hoạt động với mức giá > 1 triệu đồng | Major | Medium | Fixed |
-| **BUG_CART_005** | Nút "Xóa sản phẩm" không phản hồi trên trình duyệt Firefox | Major | Medium | Open |
-| **BUG_CHECKOUT_006** | Không lưu được địa chỉ giao hàng mới tạo | Major | High | Open |
-| **BUG_UI_007** | Sai chính tả tiêu đề trang chủ "Wellcome" | Minor | Low | Fixed |
-| **BUG_UI_008** | Nút "Login" bị lệch pixel trên màn hình mobile | Minor | Low | Open |
-| **BUG_PROD_009** | Hình ảnh sản phẩm load chậm (>5s) | Minor | Low | Open |
-| **BUG_AUTH_010** | Thông báo lỗi sai định dạng hiển thị màu xanh thay vì đỏ | Minor | Low | Open |
+| **BUG_AUTH_011** | Không thể đăng ký tài khoản khi tên chứa dấu tiếng Việt | **Major** | High | Open |
+| **BUG_AUTH_012** | Token đăng nhập hết hạn ngay sau khi đăng nhập thành công | Major | High | Open |
+| **BUG_PROD_013** | Kết quả tìm kiếm trả về sản phẩm không liên quan | Major | Medium | Open |
+| **BUG_PROD_014** | Trang chi tiết sản phẩm bị lỗi layout khi mô tả dài > 300 ký tự | Major | Medium | Fixed |
+| **BUG_CART_015** | Giá khuyến mãi hiển thị sai khi áp mã giảm giá 10% | Major | High | Open |
+| **BUG_CART_016** | Số lượng tối đa nhập cho 1 sản phẩm không giới hạn (nên có giới hạn) | Major | Low | Open |
+| **BUG_CHECKOUT_017** | Thanh toán thử nghiệm (COD) tạo đơn với trạng thái "Pending" vô thời hạn | Critical | High | Open |
+| **BUG_UI_018** | Modal thông báo không có nút đóng (X) trên màn hình nhỏ | Minor | Low | Fixed |
+| **BUG_UI_019** | Tooltip mô tả sản phẩm bị che bởi footer trên mobile | Minor | Low | Open |
+| **BUG_PROD_020** | Thumbnail sản phẩm bị mất tỉ lệ (stretched) trên Safari | Minor | Low | Open |
 
 ---
 
 ## Chi tiết lỗi điển hình (Sample)
 
-### 1. BUG_CART_001
-- **Tóm tắt:** Tổng tiền giỏ hàng tính sai khi mua > 10 sản phẩm cùng loại.
-- **Môi trường:** Chrome 120, Windows 11.
+### 1. BUG_AUTH_011
+- **Tóm tắt:** Không thể đăng ký tài khoản khi tên người dùng chứa dấu tiếng Việt (ví dụ "Nguyễn Văn A").
+- **Môi trường:** Chrome 120, Windows 10; Chrome 120, Android (mobile).
 - **Các bước tái hiện:**
-    1. Login vào hệ thống.
-    2. Chọn sản phẩm A (giá 100k).
-    3. Thêm vào giỏ.
-    4. Vào giỏ hàng, cập nhật số lượng lên 11.
-- **Kết quả mong đợi:** Tổng tiền = 1.100.000đ.
-- **Kết quả thực tế:** Tổng tiền = 1.000.000đ (Dường như chỉ tính 10 item).
-- **Severity:** Critical.
+    1. Mở trang Đăng ký.
+    2. Nhập Email hợp lệ, mật khẩu hợp lệ.
+    3. Nhập Họ tên: "Nguyễn Văn A".
+    4. Nhấn Register.
+- **Kết quả mong đợi:** Tài khoản được tạo thành công, chuyển sang trang Verify/Welcome.
+- **Kết quả thực tế:** Hiển thị lỗi: "Tên không hợp lệ" và không cho đăng ký. Server trả về validation error 400.
+- **Severity:** Major.
 - **Priority:** High.
+- **Ghi chú:** Khả năng regex validation phía client/server không hỗ trợ ký tự Unicode.
 
-### 2. BUG_CHECKOUT_002
-- **Tóm tắt:** Hệ thống crash khi chọn thanh toán Visa.
-- **Môi trường:** Chrome 120, Windows 11.
+### 2. BUG_CHECKOUT_017
+- **Tóm tắt:** Đơn hàng đặt bằng phương thức COD giữ trạng thái "Pending" vô thời hạn, không chuyển sang "Processing" hoặc "Completed".
+- **Môi trường:** Firefox 115, Windows 11; Backend staging.
 - **Các bước tái hiện:**
-    1. Thêm sản phẩm vào giỏ.
-    2. Proceed to Checkout.
-    3. Chọn Method "Visa Card".
-- **Kết quả mong đợi:** Hiển thị form nhập thông tin thẻ.
-- **Kết quả thực tế:** Trang web trắng trơn (Blank page), console báo lỗi 500 Internal Server Error.
+    1. Thêm sản phẩm vào giỏ, Proceed to Checkout.
+    2. Nhập địa chỉ giao hàng hợp lệ.
+    3. Chọn phương thức thanh toán: COD.
+    4. Xác nhận đặt hàng.
+- **Kết quả mong đợi:** Đơn được tạo với trạng thái "Processing" hoặc "Confirmed".
+- **Kết quả thực tế:** Đơn tạo thành công nhưng trạng thái hiển thị "Pending" > 48 giờ, webhook/payment callback không gọi.
 - **Severity:** Critical.
 - **Priority:** High.
+- **Ghi chú:** Kiểm tra luồng xử lý trạng thái đơn và webhook/service queue.
+
+---
